@@ -19,7 +19,7 @@ function log { echo -e "$1"; }
 BRANCH=$VERSION
 
 if [ "$VERSION" = 'edge' ]; then
-    BRANCH=master
+    BRANCH='latest'
 fi
 
 # INFO
@@ -30,7 +30,7 @@ log "Branch: $BRANCH"
 
 # INSTALLATION
 sectionLog "\nPreparing installation"
-git clone https://github.com/Djuno-ltd/paas-in-the-box -b $BRANCH
+git clone https://github.com/Djuno-ltd/paas-in-the-box 
 if [ $? -eq 0 ]; then
     successLog "DONE."
 else
@@ -105,11 +105,22 @@ case $(uname -m) in
 esac
 
 if [ $ARM -eq 1 ]; then
-    COMPOSE_FILE="djuno/docker-compose.arm.yml"
-    max_attempts=56 # Wait up to ~ 4 minutes -> ((60[interval] + 10[timeout]) * 4[minutes]) / 5[sleep]
+    if [$BRANCH eq 'latest']; then 
+      COMPOSE_FILE="djuno/docker-compose.arm.yml"
+      max_attempts=56 # Wait up to ~ 4 minutes -> ((60[interval] + 10[timeout]) * 4[minutes]) / 5[sleep]
+    else
+      COMPOSE_FILE="djuno/docker-compose.arm_edge.yml"
+      max_attempts=56 # Wait up to ~ 4 minutes -> ((60[interval] + 10[timeout]) * 4[minutes]) / 5[sleep]
+    fi
 else
-    COMPOSE_FILE="djuno/docker-compose.yml"
-    max_attempts=28 # Wait up to ~ 2 minutes -> ((60[interval] + 10[timeout]) * 2[minutes]) / 5[sleep]
+    if [$BRANCH eq 'latest']; then 
+        COMPOSE_FILE="djuno/docker-compose.yml"
+        max_attempts=28 # Wait up to ~ 2 minutes -> ((60[interval] + 10[timeout]) * 2[minutes]) / 5[sleep]
+    else
+        COMPOSE_FILE="djuno/docker-compose_edge.yml"
+        max_attempts=28 # Wait up to ~ 2 minutes -> ((60[interval] + 10[timeout]) * 2[minutes]) / 5[sleep]
+    fi
+  
 fi
 
 sed -i "s|888:8080|$PORT:8080|" $COMPOSE_FILE
@@ -146,11 +157,11 @@ do
   fi
   if [ ${attempt_counter} -eq ${max_attempts} ]; then
       errorLog "FAILED!"
-      warningLog "Swarmpit is not responding for a long time. Aborting installation...:(\nPlease check logs and cluster status for details."
+      warningLog "Djuno is not responding for a long time. Aborting installation...:(\nPlease check logs and cluster status for details."
       exit 1
   fi
   sleep 5
 done
 
-log "Swarmpit is running on port :$PORT"
+log "Djuno is running on port :$PORT"
 titleLog "\nEnjoy :)"

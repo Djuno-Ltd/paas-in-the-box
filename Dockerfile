@@ -1,5 +1,5 @@
 FROM docker:stable-dind
-MAINTAINER Pavol Noha <pavol.noha@gmail.com>
+MAINTAINER Moe Sayadi <moe@djuno.io>
 
 RUN apk add --update git figlet curl jq && \
     rm -rf /var/cache/apk/*

@@ -1,4 +1,3 @@
-# Djuno agent
 ![Image of Djuno Logo](https://djuno.io/wp-content/uploads/2020/06/cropped-Djuno-just-logo-1-transparent.png)
 
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
