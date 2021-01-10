@@ -17,6 +17,8 @@ else
     TAG="pr-$TRAVIS_PULL_REQUEST-$TAG-$DJUNO_VERSION"
 fi
 
+
+
 IMAGE=$NAMESPACE:$TAG
 
 docker run --rm --privileged docker/binfmt:820fdd95a9972a5308930a2bdfb8573dd4447ad3
