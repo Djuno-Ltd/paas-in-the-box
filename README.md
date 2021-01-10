@@ -1,7 +1,7 @@
 ![Image of Djuno Logo](https://djuno.io/wp-content/uploads/2020/06/cropped-Djuno-just-logo-1-transparent.png)
 
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://travis-ci.com/Djuno-Ltd/awesome-compose.svg?branch=main)](https://travis-ci.com/Djuno-Ltd/awesome-compose)
+[![Build Status](https://travis-ci.com/Djuno-Ltd/paas-in-the-box.svg?branch=main)](https://travis-ci.com/Djuno-Ltd/paas-in-the-box)
 # paas-in-the-box
 docker swarm mode, PaaS Solution to Build, Deploy, Manage, and Scale Your Apps. Get Apps to Market Faster by Focusing on the Code and Not on Underlying Infrastructure.
 
