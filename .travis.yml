@@ -1,0 +1,15 @@
+language: minimal
+addons:
+  apt:
+    packages:
+      - docker-ce
+    sources:
+      - sourceline: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable test'
+        key_url: 'https://download.docker.com/linux/ubuntu/gpg'
+env:
+  global:
+    - DOCKER_CLI_EXPERIMENTAL=enabled
+  matrix:
+    - DJUNO_VERSION=edge
+script:
+  - bash deploy-image.sh
