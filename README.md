@@ -1,4 +1,4 @@
-![Image of Djuno Logo](https://djuno.io/wp-content/uploads/2020/06/cropped-Djuno-just-logo-1-transparent.png)
+![Image of Djuno Logo](logo.svg)
 
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://travis-ci.com/Djuno-Ltd/paas-in-the-box.svg?branch=main)](https://travis-ci.com/Djuno-Ltd/paas-in-the-box)

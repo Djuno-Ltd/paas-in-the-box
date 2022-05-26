@@ -19,7 +19,11 @@ function log { echo -e "$1"; }
 BRANCH=$VERSION
 
 if [ "$VERSION" = 'edge' ]; then
-    BRANCH='latest'
+    BRANCH='edge'
+elif [ "$VERSION" = 'dev' ]; then
+    BRANCH='dev'
+else
+    BRANCH='latest' 
 fi
 
 # INFO
@@ -108,6 +112,9 @@ if [ $ARM -eq 1 ]; then
     if [$BRANCH eq 'latest']; then 
       COMPOSE_FILE="djuno/docker-compose.arm.yml"
       max_attempts=56 # Wait up to ~ 4 minutes -> ((60[interval] + 10[timeout]) * 4[minutes]) / 5[sleep]
+    if [$BRANCH eq 'dev']; then 
+      COMPOSE_FILE="djuno/docker-compose.arm_dev.yml"
+      max_attempts=56 # Wait up to ~ 4 minutes -> ((60[interval] + 10[timeout]) * 4[minutes]) / 5[sleep]
     else
       COMPOSE_FILE="djuno/docker-compose.arm_edge.yml"
       max_attempts=56 # Wait up to ~ 4 minutes -> ((60[interval] + 10[timeout]) * 4[minutes]) / 5[sleep]
@@ -115,6 +122,9 @@ if [ $ARM -eq 1 ]; then
 else
     if [$BRANCH eq 'latest']; then 
         COMPOSE_FILE="djuno/docker-compose.yml"
+        max_attempts=28 # Wait up to ~ 2 minutes -> ((60[interval] + 10[timeout]) * 2[minutes]) / 5[sleep]
+    elif [$BRANCH eq 'dev'];  then
+        COMPOSE_FILE="djuno/docker-compose_dev.yml"
         max_attempts=28 # Wait up to ~ 2 minutes -> ((60[interval] + 10[timeout]) * 2[minutes]) / 5[sleep]
     else
         COMPOSE_FILE="djuno/docker-compose_edge.yml"
