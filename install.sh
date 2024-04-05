@@ -112,7 +112,7 @@ if [ $ARM -eq 1 ]; then
     if [$BRANCH eq 'latest']; then 
       COMPOSE_FILE="djuno/docker-compose.arm.yml"
       max_attempts=56 # Wait up to ~ 4 minutes -> ((60[interval] + 10[timeout]) * 4[minutes]) / 5[sleep]
-    if [$BRANCH eq 'dev']; then 
+    elif [$BRANCH eq 'dev']; then 
       COMPOSE_FILE="djuno/docker-compose.arm_dev.yml"
       max_attempts=56 # Wait up to ~ 4 minutes -> ((60[interval] + 10[timeout]) * 4[minutes]) / 5[sleep]
     else
